@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tamil Selvan | Full Stack Developer Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #f59e0b;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 3rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+      opacity: 0.1;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      border: 4px solid white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    header img:hover {
+      transform: scale(1.05);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      color: white;
+      background: rgba(255, 255, 255, 0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .card {
+      background: #fff;
+      padding: 2.5rem;
+      margin: 2rem auto;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border-radius: 16px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeIn 0.8s forwards;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-left: 4px solid var(--primary);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary);
+      border-radius: 3px;
+    }
+
+    h3 {
+      color: var(--dark);
+      margin: 1.5rem 0 0.5rem;
+      font-weight: 500;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    li::before {
+      content: '▹';
+      position: absolute;
+      left: -1.3rem;
+      color: var(--secondary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      margin-top: 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .project {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .project:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+
+    .tag {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--dark);
+      color: white;
+      margin-top: 3rem;
+    }
+
+    footer p {
+      opacity: 0.8;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Animation delays */
+    #about { animation-delay: 0.1s; }
+    #skills { animation-delay: 0.2s; }
+    #projects { animation-delay: 0.3s; }
+    #education { animation-delay: 0.4s; }
+    #certifications { animation-delay: 0.5s; }
+    #contact { animation-delay: 0.6s; }
+
+    /* Progress bar */
+    .skill-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 2rem 1rem;
+      }
+      
+      header img {
+        width: 120px;
+        height: 120px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .card {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 1.5rem 1rem;
+      }
+      
+      header img {
+        width: 100px;
+        height: 100px;
+      }
+      
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      .tagline {
+        font-size: 1rem;
+      }
+      
+      .card {
+        padding: 1.25rem;
+        margin: 1.5rem auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="ea5486bf-d05d-47f1-b46a-bac6a475a0e1.jpg" alt="Tamil Selvan" />
+      <h1>Tamil Selvan N</h1>
+      <p class="tagline">Java Full Stack Developer | React | Spring Boot | SQL</p>
+      <div class="social-links">
+        <a href="https://github.com/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/tamil-selvan-782b69310?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/yourhandle" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="mailto:tamilkirant@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card" id="about">
+      <h2>About Me</h2>
+      <p>I'm a passionate Java Full Stack Developer with expertise in building robust, scalable, and user-friendly web applications. With a strong foundation in both frontend and backend technologies, I enjoy turning complex problems into elegant solutions.</p>
+      <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge with the developer community.</p>
+    </section>
+
+    <section class="card" id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>Java</span>
+          <span>90%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" style="width: 90%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>Spring Boot</span>
+          <span>85%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" style="width: 85%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>React.js</span>
+          <span>80%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" style="width: 80%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>SQL/Databases</span>
+          <span>85%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" style="width: 85%"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">
+          <span>HTML/CSS/JavaScript</span>
+          <span>90%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" style="width: 90%"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="projects">
+      <h2>Featured Projects</h2>
+      <div class="project">
+        <h3>Courier Tracking System</h3>
+        <p>A comprehensive courier management solution with real-time tracking, shipment management, and customer portal. Implemented secure authentication and optimized database queries for performance.</p>
+        <div class="project-tags">
+          <span class="tag">html></span>
+          <span class="tag">css</span>
+          <span class="tag">JavaScript<span>
+          <span class="tag">node.js</span>
+           <span class="tag">mongodb</span>
+        </div>
+      </div>
+      <div class="project">
+        <h3>Weather Dashboard</h3>
+        <p>Interactive weather application providing current conditions, forecasts, and historical data visualization. Integrated with multiple weather APIs and implemented caching for better performance.</p>
+        <div class="project-tags">
+          <span class="tag">React</span>
+          <span class="tag">Chart.js</span>
+          <span class="tag">REST API</span>
+          <span class="tag">Local Storage</span>
+        </div>
+      </div>
+      <div class="project">
+        <h3>Employee Management System</h3>
+        <p>Enterprise-grade employee management solution with role-based access control, attendance tracking, payroll integration, and comprehensive reporting features.</p>
+        <div class="project-tags">
+          <span class="tag">Java</span>
+          <span class="tag">Servlets</span>
+          <span class="tag">mySQL</span>
+        </div>
+      </div>
+      <a href="#" class="btn">View All Projects <i class="fas fa-arrow-right"></i></a>
+    </section>
+
+    <section class="card" id="education">
+      <h2>Education</h2>
+      <div class="project">
+        <h3>B.Sc. Computer Science</h3>
+        <p>Hindustan College of Arts and Science, Chennai</p>
+        <p>2022–2025 | CGPA: 8.5/10</p>
+      </div>
+      <div class="project">
+        <h3>Higher Secondary Education</h3>
+        <p>Govt. Boys Hr Sec School, Thirukkalukundram</p>
+        <p>2021–2022 | Percentage: 60.16%</p>
+      </div>
+      <div class="project">
+        <h3>Secondary Education</h3>
+        <p>VS Matric Hr Sec School</p>
+        <p>2019–2020 | Percentage: 77%</p>
+      </div>
+    </section>
+
+    <section class="card" id="certifications">
+      <h2>Certifications</h2>
+      <ul>
+        <li>Fullstack Development in java</li>
+        <li>HackerRank Java Gold Badge</li>
+        <li>Honor Diploma in Computer Application (HDCA)</li>
+      </ul>
+    </section>
+
+    <section class="card" id="contact">
+      <h2>Get In Touch</h2>
+      <p>I'm currently looking for new opportunities as a Java Full Stack Developer. Whether you have a question or just want to say hi, I'll do my best to get back to you!</p>
+      <div style="margin-top: 1.5rem;">
+        <p><i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> <a href="mailto:tamilkirant@gmail.com" style="color: var(--primary); text-decoration: none;">tamilkirant@gmail.com</a></p>
+        <p style="margin-top: 0.5rem;"><i class="fas fa-phone" style="margin-right: 0.5rem;"></i> +91 9894305262</p>
+        <p style="margin-top: 0.5rem;"><i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i> Chengalpattu, Tamil Nadu, India</p>
+      </div>
+      <a href="mailto:tamilkirant@gmail.com" class="btn"><i class="fas fa-paper-plane"></i> Send Message</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tamil Selvan N. All rights reserved.</p>
+    <p style="margin-top: 0.5rem;">Built with <i class="fas fa-heart" style="color: #ef4444;"></i> and <i class="fas fa-code"></i></p>
+  </footer>
+</body>
+</html>
